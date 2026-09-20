@@ -55,9 +55,9 @@ def anki() -> None:
     "--from",
     "source_kind",
     type=click.Choice(_SOURCE_KINDS, case_sensitive=True),
-    default="file",
+    default="history",
     show_default=True,
-    help="Card source. ``file`` is offline; the others fetch after login.",
+    help="Card source. Default ``history`` fetches after login; ``file`` is offline.",
 )
 @click.option(
     "--input",
@@ -129,8 +129,8 @@ def anki_export(
       notebooklm anki export --from file --input history.json -o cards.yaml
 
     \b
-    After ``notebooklm login``:
-      notebooklm anki export --from history -n <nb> -o cards.yaml
+    After ``notebooklm login`` (default ``--from history``):
+      notebooklm anki export -n <nb> -o cards.yaml
       notebooklm anki export --from notes -n <nb> --format jsonl -o cards.jsonl
       notebooklm anki export --from flashcards -n <nb> --format tsv -o cards.tsv
     """

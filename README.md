@@ -294,8 +294,8 @@ This VibeGoette fork adds `notebooklm anki export`: it turns NotebookLM Q&A, not
 python3.12 -m notebooklm login
 python3.12 -m notebooklm use <notebook_id>
 
-# Chat history → anki-llm YAML
-python3.12 -m notebooklm anki export --from history -n <notebook_id> -o cards.yaml
+# Chat history → anki-llm YAML (default --from history)
+python3.12 -m notebooklm anki export -n <notebook_id> -o cards.yaml
 
 # Notes (including saved Q&A) → lokallern JSONL
 python3.12 -m notebooklm anki export --from notes -n <notebook_id> --format jsonl -o cards.jsonl

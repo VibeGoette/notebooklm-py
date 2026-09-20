@@ -8566,6 +8566,7 @@
       "class": "SectionedGroup",
       "commands": [
         "agent",
+        "anki",
         "artifact",
         "ask",
         "auth",
@@ -12403,6 +12404,7 @@
   },
   "root_commands": [
     "agent",
+    "anki",
     "artifact",
     "ask",
     "auth",

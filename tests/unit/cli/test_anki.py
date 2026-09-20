@@ -98,6 +98,17 @@ def test_anki_export_file_requires_input() -> None:
     assert "--input" in result.output
 
 
+def test_anki_export_default_from_history_reaches_auth() -> None:
+    """Bare ``anki export --json`` must not validate --input; default is history."""
+    runner = CliRunner()
+    result = runner.invoke(cli, ["anki", "export", "--json", "-n", "nb_x"])
+    assert result.exit_code == 1
+    payload = json.loads(result.output)
+    assert payload["error"] is True
+    assert payload["code"] != "VALIDATION_ERROR"
+    assert "--input" not in result.output
+
+
 def test_anki_export_empty_file_exits_not_found(tmp_path: Path) -> None:
     runner = CliRunner()
     empty = tmp_path / "empty.json"

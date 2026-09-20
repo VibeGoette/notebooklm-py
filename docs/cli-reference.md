@@ -490,9 +490,9 @@ Export NotebookLM study material as Anki / [anki-maxed](https://github.com/VibeG
 
 | Command | Arguments | Options | Example |
 |---------|-----------|---------|---------|
-| `export` | - | `--from [file\|history\|notes\|guide\|flashcards\|quiz]`, `--input PATH`, `--format [yaml\|tsv\|json\|jsonl]`, `-o/--output PATH`, `--deck TEXT`, `--tag TEXT`, `--source ID`, `--cloze`, `--limit N`, `--artifact ID`, `--json` | `anki export --from history -n nb123 -o cards.yaml` |
+| `export` | - | `--from [file\|history\|notes\|guide\|flashcards\|quiz]` (default `history`), `--input PATH`, `--format [yaml\|tsv\|json\|jsonl]`, `-o/--output PATH`, `--deck TEXT`, `--tag TEXT`, `--source ID`, `--cloze`, `--limit N`, `--artifact ID`, `--json` | `anki export -n nb123 -o cards.yaml` |
 
-`--from file` is offline (no Google auth). The other `--from` values fetch after `notebooklm login`. YAML is the [anki-llm](https://github.com/raine/anki-llm) `import` shape; TSV is Anki File → Import; JSON/JSONL is the `lokallern.card.v1` draft schema.
+`--from history` is the default (fetches chat Q&A after `notebooklm login`). `--from file` is offline (no Google auth) and requires `--input`. YAML is the [anki-llm](https://github.com/raine/anki-llm) `import` shape; TSV is Anki File → Import; JSON/JSONL is the `lokallern.card.v1` draft schema.
 
 This command does not talk to AnkiConnect and does not read AnkiConnect or LLM API keys.
 
