@@ -8195,6 +8195,51 @@
     },
     {
       "kind": "from",
+      "lineno": 12,
+      "scope": null,
+      "scope_kind": "module",
+      "source": "notebooklm.cli.anki_cmd",
+      "target": "notebooklm._app.chat",
+      "type_only": false
+    },
+    {
+      "kind": "from",
+      "lineno": 13,
+      "scope": null,
+      "scope_kind": "module",
+      "source": "notebooklm.cli.anki_cmd",
+      "target": "notebooklm._app.source_content",
+      "type_only": false
+    },
+    {
+      "kind": "from",
+      "lineno": 14,
+      "scope": null,
+      "scope_kind": "module",
+      "source": "notebooklm.cli.anki_cmd",
+      "target": "notebooklm.anki",
+      "type_only": false
+    },
+    {
+      "kind": "from",
+      "lineno": 25,
+      "scope": null,
+      "scope_kind": "module",
+      "source": "notebooklm.cli.anki_cmd",
+      "target": "notebooklm.anki.serialize",
+      "type_only": false
+    },
+    {
+      "kind": "from",
+      "lineno": 34,
+      "scope": null,
+      "scope_kind": "module",
+      "source": "notebooklm.cli.anki_cmd",
+      "target": "notebooklm.client",
+      "type_only": true
+    },
+    {
+      "kind": "from",
       "lineno": 23,
       "scope": null,
       "scope_kind": "module",
@@ -10544,7 +10589,7 @@
     },
     {
       "kind": "from",
-      "lineno": 120,
+      "lineno": 121,
       "scope": null,
       "scope_kind": "module",
       "source": "notebooklm.notebooklm_cli",
@@ -10553,7 +10598,7 @@
     },
     {
       "kind": "from",
-      "lineno": 218,
+      "lineno": 219,
       "scope": "cli",
       "scope_kind": "function",
       "source": "notebooklm.notebooklm_cli",
@@ -11367,16 +11412,16 @@
       "modules": 33
     },
     "cli": {
-      "lines": 22795,
-      "modules": 76
+      "lines": 23158,
+      "modules": 77
     },
     "mcp": {
       "lines": 11141,
       "modules": 39
     },
     "root": {
-      "lines": 27115,
-      "modules": 90
+      "lines": 27960,
+      "modules": 94
     },
     "rpc": {
       "lines": 385,
@@ -11400,14 +11445,14 @@
     }
   },
   "summary": {
-    "authored_lines": 150849,
-    "authored_modules": 479,
+    "authored_lines": 152057,
+    "authored_modules": 484,
     "class_local_edges": 0,
-    "cross_subsystem_edges": 1250,
+    "cross_subsystem_edges": 1255,
     "dynamic_import_calls": 10,
     "function_local_edges": 87,
-    "module_level_edges": 1163,
-    "type_only_edges": 133
+    "module_level_edges": 1168,
+    "type_only_edges": 134
   },
   "version": 1
 }

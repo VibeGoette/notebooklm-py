@@ -52,7 +52,7 @@ class SectionedGroup(click.Group):
     - Session: login, use, status, usage, clear, doctor, auth, completion
     - Notebooks: list, create, copy, delete, rename, summary, metadata
     - Chat: ask, suggest-prompts, suggest-next-steps, configure, history
-    - Command Groups: source, artifact, note, label, collection, share, research,
+    - Command Groups: source, anki, artifact, note, label, collection, share, research,
       profile, agent, skill, language, mcp (show subcommands)
     - Artifact Actions: generate, download (show types)
     - Other: only commands explicitly tagged ``category="misc"``
@@ -77,6 +77,7 @@ class SectionedGroup(click.Group):
                 "Command Groups (use: notebooklm <group> <command>)",
                 [
                     "source",
+                    "anki",
                     "artifact",
                     "note",
                     "label",

@@ -97,6 +97,7 @@ from ._version_info import version_string
 # Import command groups from cli package
 from .cli import (
     agent,
+    anki,
     artifact,
     collection,
     download,
@@ -257,6 +258,7 @@ register_doctor_command(cli)
 
 # Register command groups (subcommand style)
 cli.add_command(source)
+cli.add_command(anki)
 cli.add_command(artifact)
 cli.add_command(agent)
 cli.add_command(generate)
