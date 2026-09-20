@@ -2060,6 +2060,10 @@ Per-file index plus the full `src/notebooklm` + `tests` repository tree. The tre
 | `_browser/headless_reauth.py` | Opt-in layer-3 browser recovery implementation behind `_auth.recovery_rungs` |
 | `_browser/oauth_token.py` | Visible EmbeddedSetup OAuth-cookie capture implementation |
 | `_auth/recovery_rungs.py` | Neutral process registry + closed outcome for the optional blocking L3 implementation; keeps recovery independent of browser code |
+| `anki/convert.py` | Pure NotebookLM → Anki card converters (Q&A, notes, source guides, flashcards, quizzes, transcript fixtures) |
+| `anki/parse.py` | Offline payload detection for `history --json`, flashcard/quiz JSON, notes, guides, and transcript fixtures |
+| `anki/serialize.py` | YAML (anki-llm), TSV (Anki text import), JSON/JSONL (lokallern / anki-maxed) card writers |
+| `cli/anki_cmd.py` | `anki export` Click adapter over `notebooklm.anki` plus existing `_app.chat` / `_app.source_content` fetchers |
 | `cli/label_cmd.py` | `label` command group (list/sources/generate/create/rename/emoji/add/remove/delete); thin Click shells over `client.labels`, `_app.labels`, and the label-listing service (ADR-0008/0021) |
 | `cli/collection_cmd.py` | `collection` command group (list/notebooks/create/rename/add/remove/delete); account-level (no `--notebook` option); thin Click shells over `client.collections` + `_app.collections` (ADR-0008/0021) |
 | `cli/services/label_listing.py` | `label` CLI service: the `label list` members→source-titles join (`execute_label_list`/`LabelListPlan`). Re-exports `resolve_label_id` + `LabelResolutionError` from `_app/labels.py` (the composite `<id\|name>` resolver moved to the neutral layer; the re-export keeps `from .services.label_listing import resolve_label_id` resolving for the command layer + tests) |
@@ -2548,6 +2552,10 @@ src/notebooklm/
 │   ├── __init__.py              # Two-name public surface plus identity re-exports from _web/wire
 │   ├── _identifiers.py          # Dependency-bottom RPC method-ID owner with historical public provenance
 │   └── types.py                 # RPC constants/domain enums plus exact-identity RPCMethod compatibility re-export
+├── anki/                        # NotebookLM → Anki / anki-maxed card converter (pure)
+│   ├── convert.py               # Q&A / notes / guide / flashcard / quiz / transcript → cards
+│   ├── parse.py                 # Local JSON/JSONL/Markdown payload detection
+│   └── serialize.py             # YAML (anki-llm), TSV (Anki import), JSON/JSONL (lokallern)
 ├── cli/                         # CLI implementation
     ├── __init__.py              # Re-exports click groups under historical names from *_cmd modules
     ├── _chromium_profiles.py    # Multi-user-data-profile cookie extraction for Chromium browsers
@@ -2559,6 +2567,7 @@ src/notebooklm/
     ├── _source_render.py        # Source CLI render/validation helpers (extracted from source_cmd.py)
     ├── agent_cmd.py             # agent show commands
     ├── agent_templates.py       # agent prompts and configurations
+    ├── anki_cmd.py              # anki export (NotebookLM → Anki / anki-maxed cards)
     ├── artifact_cmd.py          # artifact commands
     ├── auth_runtime.py          # CLI authentication + command runtime helpers
     ├── chat_cmd.py              # ask, configure, history

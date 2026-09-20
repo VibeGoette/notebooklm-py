@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Anki / anki-maxed bridge.** `notebooklm anki export` converts NotebookLM
+  chat history, notes, source guides, flashcards, and quizzes into Anki-importable
+  YAML (anki-llm), TSV (Anki text import), or JSON/JSONL (`lokallern.card.v1`).
+  Offline `--from file` needs no Google auth. Documented in the README
+  section "Anki / anki-maxed bridge". No AnkiConnect secrets are stored or
+  invented.
+
 - **Web vs Android public-behavior inventory.**
   [`docs/web-android-public-behavior.md`](docs/web-android-public-behavior.md)
   classifies remaining public backend splits (notes tombstone projection, raw

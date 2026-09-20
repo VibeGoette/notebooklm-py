@@ -283,6 +283,61 @@ notebooklm profile switch work       # Switch active account profile
 
 Use `--prompt-file PATH` with `ask`, prompt-based `generate` commands, and `source add-research` when the text is too long for the shell command line. This reads prompt/query text from a file and is separate from `source add ./file.pdf`, which still uploads that file as a NotebookLM source.
 
+## Anki / anki-maxed bridge
+
+This VibeGoette fork adds `notebooklm anki export`: it turns NotebookLM Q&A, notes, source guides, flashcards, and quizzes into **reviewed-deck material** for [anki-maxed](https://github.com/VibeGoette/anki-maxed) (Lokal Lern / `lokallern`) and [anki-llm](https://github.com/raine/anki-llm). Anki stays the SRS. Cards use clear **Front / Back** fields (stock Basic) plus a **Text** field for Cloze.
+
+**Max, after `notebooklm login`:**
+
+```bash
+# Python 3.12 module form (same as `/opt/homebrew/bin/python3.12 -m notebooklm`)
+python3.12 -m notebooklm login
+python3.12 -m notebooklm use <notebook_id>
+
+# Chat history → anki-llm YAML
+python3.12 -m notebooklm anki export --from history -n <notebook_id> -o cards.yaml
+
+# Notes (including saved Q&A) → lokallern JSONL
+python3.12 -m notebooklm anki export --from notes -n <notebook_id> --format jsonl -o cards.jsonl
+
+# Existing Studio flashcards (reuses `download flashcards`)
+python3.12 -m notebooklm anki export --from flashcards -n <notebook_id> --format tsv -o cards.tsv
+
+# Source guide → Basic cards (needs a source id)
+python3.12 -m notebooklm anki export --from guide -n <notebook_id> --source <source_id> -o guide.yaml
+```
+
+**Offline / already-downloaded artifacts** (no Google auth):
+
+```bash
+python3.12 -m notebooklm download flashcards --format json ./flashcards.json
+python3.12 -m notebooklm history --json > history.json   # if you already logged in earlier
+python3.12 -m notebooklm anki export --from file --input history.json -o cards.yaml
+python3.12 -m notebooklm anki export --from file --input tests/fixtures/anki/notebook_transcript.json -o demo.yaml
+```
+
+**Import into Anki** (anki-llm is the Anki layer; Anki Desktop + AnkiConnect must be running):
+
+```bash
+anki-llm import cards.yaml --deck "FOM::Allg Psych" --note-type Basic
+# or Anki → File → Import on the TSV (`#separator:tab`, columns Front/Back/Text/Tags)
+```
+
+**lokallern / anki-maxed:** JSONL uses schema `lokallern.card.v1` (`front`, `back`, `text`, `note_type`, `template`, `source_ref`, `status=draft`, `tags`, `deck`). That is the ingest shape `lokallern` can review before `lokallern anki push`. Tags always include `notebooklm` and `nb:<notebook_id>`.
+
+**Env / config names only — do not put secrets in the repo or in commands:**
+
+| Name | Who reads it | Purpose |
+|------|----------------|---------|
+| `NOTEBOOKLM_HOME` / `NOTEBOOKLM_PROFILE` | notebooklm-py | Where login cookies live (`~/.notebooklm/profiles/<name>/`) |
+| `NOTEBOOKLM_NOTEBOOK` | notebooklm-py | Default `-n/--notebook` |
+| `anki_connect_url` | anki-llm config | AnkiConnect endpoint (default `http://127.0.0.1:8765`) |
+| AnkiConnect add-on **API key** field | AnkiConnect (optional) | Only if you enable it in the add-on; this fork never hardcodes it |
+| `ANKI_LLM_API_KEY` / `OPENAI_API_KEY` / `OPENROUTER_API_KEY` | anki-llm | LLM providers for `process-file` / `process-deck` — **not** required for `anki-llm import` |
+| macOS Keychain OpenRouter entry | anki-maxed | Injected into anki-llm at call time; never pass the value as a CLI argument |
+
+`--json` on `anki export` prints a machine-readable envelope (count, paths, cards). The converter itself is `notebooklm.anki` (pure functions, no Google auth).
+
 ### Python API
 
 ```python

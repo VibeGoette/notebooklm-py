@@ -1,0 +1,37 @@
+{
+  "notebook_id": "nb_allg_psych_demo",
+  "notebook_title": "Allgemeine Psychologie",
+  "sources": [
+    {
+      "id": "src_skript_kap3",
+      "title": "Skript Kapitel 3 Gedaechtnis"
+    }
+  ],
+  "qa_pairs": [
+    {
+      "turn": 1,
+      "question": "Was unterscheidet sensorisches Gedaechtnis und Arbeitsgedaechtnis?",
+      "answer": "Sensorisches Gedaechtnis haelt Reize nur Bruchteile einer Sekunde. Das Arbeitsgedaechtnis haelt wenige Elemente fuer Sekunden bis Minuten und bearbeitet sie aktiv."
+    },
+    {
+      "turn": 2,
+      "question": "Was beschreibt die Enkodierspezifitaet?",
+      "answer": "Abruf gelingt besser, wenn der Kontext beim Lernen dem Kontext beim Testen aehnelt."
+    }
+  ],
+  "notes": [
+    {
+      "id": "note_hippocampus",
+      "title": "Hippocampus",
+      "content": "**Q:** Welche Rolle hat der Hippocampus bei der Konsolidierung?\n\n**A:** Er bindet neue Episoden, bis der Cortex die Spur uebernehmen kann."
+    }
+  ],
+  "guides": [
+    {
+      "source_id": "src_skript_kap3",
+      "source_title": "Skript Kapitel 3 Gedaechtnis",
+      "summary": "## Langzeitgedaechtnis\n\nDas Langzeitgedaechtnis speichert Wissen und Episoden ueber Stunden bis Jahrzehnte.\n\n## Interferenz\n\nProaktive Interferenz: altes Material stoert neues. Retroaktive Interferenz: neues Material stoert altes.",
+      "keywords": ["Konsolidierung", "Interferenz"]
+    }
+  ]
+}
