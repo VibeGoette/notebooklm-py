@@ -5796,6 +5796,16 @@
       "idiom": "patch.object",
       "module": "auth",
       "owner_kind": "test",
+      "owner_qualname": "test_anki_export_from_history_uses_client",
+      "package": "notebooklm.auth",
+      "path": "tests/unit/cli/test_anki.py"
+    },
+    {
+      "attribute": "fetch_tokens_with_domains",
+      "count": 1,
+      "idiom": "patch.object",
+      "module": "auth",
+      "owner_kind": "test",
       "owner_qualname": "test_auth_check_passive_continues_but_keeps_local_route_failure",
       "package": "notebooklm.auth",
       "path": "tests/unit/test_auth_issue_2061.py"
@@ -6374,16 +6384,16 @@
   "packages": {
     "notebooklm._auth": 85,
     "notebooklm._browser": 27,
-    "notebooklm.auth": 526
+    "notebooklm.auth": 527
   },
   "summary": {
     "assignments": 0,
     "distinct_targets": 62,
-    "files": 84,
-    "lexical_owners": 599,
+    "files": 85,
+    "lexical_owners": 600,
     "private": 50,
-    "public": 588,
-    "total": 638
+    "public": 589,
+    "total": 639
   },
   "version": 1
 }
