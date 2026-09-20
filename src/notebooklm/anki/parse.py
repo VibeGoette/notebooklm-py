@@ -190,8 +190,10 @@ def _cards_for_kind(
         )
     if data.get("items") and not _transcript_keys(data):
         items = data["items"]
-        if items and isinstance(items[0], Mapping) and (
-            "question" in items[0] or "front" in items[0]
+        if (
+            items
+            and isinstance(items[0], Mapping)
+            and ("question" in items[0] or "front" in items[0])
         ):
             return cards_from_qa_pairs(
                 list(items),

@@ -42,7 +42,9 @@ def test_empty_or_whitespace_pairs_are_dropped() -> None:
 
 
 def test_existing_cloze_markup_sets_note_type() -> None:
-    cards = cards_from_qa_pairs([("The {{c1::hippocampus}} consolidates.", "Medial temporal lobe.")])
+    cards = cards_from_qa_pairs(
+        [("The {{c1::hippocampus}} consolidates.", "Medial temporal lobe.")]
+    )
     assert cards[0].note_type == "cloze"
     assert "{{c1::hippocampus}}" in cards[0].text
 

@@ -295,7 +295,7 @@ def _export_from_live(
 
 async def _source_titles(client: NotebookLMClient, notebook_id: str) -> tuple[str, ...]:
     sources = await client.sources.list(notebook_id)
-    return tuple(source.title for source in sources if getattr(source, "title", None))
+    return tuple(title for source in sources if (title := source.title))
 
 
 async def _download_json_artifact(

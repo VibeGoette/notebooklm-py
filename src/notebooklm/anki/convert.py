@@ -152,9 +152,7 @@ def cards_from_qa_pairs(
     cloze: bool = False,
 ) -> tuple[AnkiCard, ...]:
     """Map Q&A turns (history, ask, or transcript) to Basic/Cloze cards."""
-    tags = default_tags(
-        notebook_id=notebook_id, extra=extra_tags, source_titles=source_titles
-    )
+    tags = default_tags(notebook_id=notebook_id, extra=extra_tags, source_titles=source_titles)
     cards: list[AnkiCard] = []
     for index, raw in enumerate(pairs, 1):
         if isinstance(raw, Mapping):
@@ -188,9 +186,7 @@ def cards_from_notes(
     into one card per pair. Other notes become a single Basic card
     (title → Front, body → Back).
     """
-    tags = default_tags(
-        notebook_id=notebook_id, extra=extra_tags, source_titles=source_titles
-    )
+    tags = default_tags(notebook_id=notebook_id, extra=extra_tags, source_titles=source_titles)
     cards: list[AnkiCard] = []
     for note in notes:
         note_id = str(getattr(note, "id", "") or _mapping_get(note, "id") or "note")
@@ -471,20 +467,24 @@ def _keyword_context(summary: str, keyword: str) -> str:
 
 
 def _flashcard_rows(payload: Mapping[str, Any] | Sequence[Any]) -> Sequence[Any]:
+    if isinstance(payload, Mapping):
+        for key in ("cards", "flashcards"):
+            rows = payload.get(key)
+            if isinstance(rows, Sequence) and not isinstance(rows, (str, bytes)):
+                return rows
+        return ()
     if isinstance(payload, Sequence) and not isinstance(payload, (str, bytes)):
         return payload
-    for key in ("cards", "flashcards"):
-        rows = payload.get(key)
-        if isinstance(rows, Sequence) and not isinstance(rows, (str, bytes)):
-            return rows
     return ()
 
 
 def _quiz_rows(payload: Mapping[str, Any] | Sequence[Any]) -> Sequence[Any]:
+    if isinstance(payload, Mapping):
+        for key in ("questions", "quiz"):
+            rows = payload.get(key)
+            if isinstance(rows, Sequence) and not isinstance(rows, (str, bytes)):
+                return rows
+        return ()
     if isinstance(payload, Sequence) and not isinstance(payload, (str, bytes)):
         return payload
-    for key in ("questions", "quiz"):
-        rows = payload.get(key)
-        if isinstance(rows, Sequence) and not isinstance(rows, (str, bytes)):
-            return rows
     return ()
