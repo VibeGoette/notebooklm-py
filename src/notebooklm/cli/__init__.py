@@ -25,6 +25,7 @@ break Python's package-attribute shadowing — see
 - ``chat_cmd``: Chat commands (ask, configure, history)
 - ``doctor_cmd``: Diagnostic and migration commands
 - ``usage_cmd``: Live compute usage command
+- ``anki_cmd``: Anki / anki-maxed card export
 
 The click groups themselves are still exported here under their historical
 names (``source``, ``artifact``, …) so ``from notebooklm.cli import source``
@@ -34,6 +35,7 @@ external importer.
 
 # Command groups (subcommand style)
 from .agent_cmd import agent
+from .anki_cmd import anki
 from .artifact_cmd import artifact
 from .chat_cmd import register_chat_commands
 from .collection_cmd import collection
@@ -96,6 +98,7 @@ from .usage_cmd import usage
 __all__ = [
     # Command groups (subcommand style)
     "source",
+    "anki",
     "artifact",
     "agent",
     "generate",

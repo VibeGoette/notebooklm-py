@@ -61,6 +61,7 @@ FUNCTION_DEF_TYPES = (ast.FunctionDef, ast.AsyncFunctionDef)
 BLOCK_DEF_TYPES = (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
 CLI_COMMAND_MODULES = {
     "agent",
+    "anki",
     "artifact",
     "chat",
     "collection",

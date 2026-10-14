@@ -1,7 +1,7 @@
 # CLI Reference
 
 **Status:** Active
-**Last Updated:** 2026-09-05
+**Last Updated:** 2026-09-20
 
 Complete command reference for the `notebooklm` CLI—providing full programmatic access to all NotebookLM features, including capabilities not exposed in the web UI.
 
@@ -46,7 +46,7 @@ See [Configuration](configuration.md) for full env-var precedence and CI/CD setu
 - **Session commands** - Authentication and context management
 - **Notebook commands** - CRUD operations on notebooks
 - **Chat commands** - Querying and conversation management
-- **Grouped commands** - `source`, `label`, `collection`, `artifact`, `agent`, `generate`, `download`, `note`, `share`, `research`, `language`, `skill`, `auth`, `profile`, `mcp`
+- **Grouped commands** - `source`, `anki`, `label`, `collection`, `artifact`, `agent`, `generate`, `download`, `note`, `share`, `research`, `language`, `skill`, `auth`, `profile`, `mcp`
 - **Utility commands** - `metadata`, `doctor`
 
 ---
@@ -483,6 +483,18 @@ Every `download` subcommand accepts the same selection / safety / output flag se
 | `delete <id>` | Note ID | `-y/--yes`, `--json` | `note delete note123 -y` |
 
 All `note` subcommands also accept `-n/--notebook ID`.
+
+### Anki Commands (`notebooklm anki <cmd>`)
+
+Export NotebookLM study material as Anki / [anki-maxed](https://github.com/VibeGoette/anki-maxed) cards. See the README section **Anki / anki-maxed bridge**.
+
+| Command | Arguments | Options | Example |
+|---------|-----------|---------|---------|
+| `export` | - | `--from [file\|history\|notes\|guide\|flashcards\|quiz]` (default `history`), `--input PATH`, `--format [yaml\|tsv\|json\|jsonl]`, `-o/--output PATH`, `--deck TEXT`, `--tag TEXT`, `--source ID`, `--cloze`, `--limit N`, `--artifact ID`, `--json` | `anki export -n nb123 -o cards.yaml` |
+
+`--from history` is the default (fetches chat Q&A after `notebooklm login`). `--from file` is offline (no Google auth) and requires `--input`. YAML is the [anki-llm](https://github.com/raine/anki-llm) `import` shape; TSV is Anki File → Import; JSON/JSONL is the `lokallern.card.v1` draft schema.
+
+This command does not talk to AnkiConnect and does not read AnkiConnect or LLM API keys.
 
 > **`source get` / `artifact get` / `note get` exit `1` on not-found (BREAKING).** All three `get` commands now exit `1` when the requested ID does not resolve to an existing item, matching the rest of the CLI's user-error convention. Under `--json` the failure body is the standard typed error envelope (`{"error": true, "code": "NOT_FOUND", "message": "...", "id": "...", "notebook_id": "..."}`); without `--json` the message is written to stderr. The previous behavior was exit `0` with a "not found" line on stdout. The pre-existing "no partial-ID match" branch (raised by `_resolve_partial_id` as a `ClickException`) was already exit `1` and is unchanged. See [CLI Exit-Code Convention](cli-exit-codes.md#get-on-not-found-exits-1-was-0-landed) for migration guidance.
 

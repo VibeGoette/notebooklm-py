@@ -29,6 +29,10 @@
       "path": "tests/unit/cli/test_android_note.py"
     },
     {
+      "count": 1,
+      "path": "tests/unit/cli/test_anki.py"
+    },
+    {
       "count": 57,
       "path": "tests/unit/cli/test_artifact.py"
     },
@@ -873,6 +877,16 @@
       "owner_qualname": "test_note_save_json_preserves_omitted_android_field_and_envelope",
       "package": "notebooklm.auth",
       "path": "tests/unit/cli/test_android_note.py"
+    },
+    {
+      "attribute": "fetch_tokens_with_domains",
+      "count": 1,
+      "idiom": "patch.object",
+      "module": "auth",
+      "owner_kind": "test",
+      "owner_qualname": "test_anki_export_from_history_uses_client",
+      "package": "notebooklm.auth",
+      "path": "tests/unit/cli/test_anki.py"
     },
     {
       "attribute": "fetch_tokens_with_domains",
@@ -5573,6 +5587,12 @@
     {
       "count": 1,
       "owner_kind": "test",
+      "owner_qualname": "test_anki_export_from_history_uses_client",
+      "path": "tests/unit/cli/test_anki.py"
+    },
+    {
+      "count": 1,
+      "owner_kind": "test",
       "owner_qualname": "TestArtifactDelete.test_artifact_delete",
       "path": "tests/unit/cli/test_artifact.py"
     },
@@ -8545,7 +8565,7 @@
     },
     {
       "attribute": "fetch_tokens_with_domains",
-      "count": 448,
+      "count": 449,
       "idiom": "patch.object",
       "module": "auth"
     },
@@ -8583,13 +8603,13 @@
   "summary": {
     "TOTAL": {
       "private": 0,
-      "public": 526,
-      "total": 526
+      "public": 527,
+      "total": 527
     },
     "auth": {
       "private": 0,
-      "public": 526,
-      "total": 526
+      "public": 527,
+      "total": 527
     }
   },
   "version": 2

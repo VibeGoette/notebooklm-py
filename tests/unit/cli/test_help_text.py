@@ -6,8 +6,9 @@ This guardrail prevents help-text drift: when a new subcommand is added to a
 block. Without this test, contributors could silently land a new subcommand
 that ``--help`` users would never discover from the group's overview.
 
-Coverage scope: the three CLI groups whose docstrings explicitly list their
-subcommands as a discoverability aid (``source``, ``artifact``, ``note``).
+Coverage scope: the CLI groups whose docstrings explicitly list their
+subcommands as a discoverability aid (``source``, ``artifact``, ``note``,
+``anki``).
 Other groups (including ``download``, whose commands are registry-generated)
 rely on Click's auto-generated subcommand table and are not in scope here.
 
@@ -25,6 +26,7 @@ import click
 import pytest
 from click.testing import CliRunner
 
+from notebooklm.cli.anki_cmd import anki
 from notebooklm.cli.artifact_cmd import artifact
 from notebooklm.cli.note_cmd import note
 from notebooklm.cli.source_cmd import source
@@ -41,6 +43,7 @@ GROUPS: list[tuple[str, click.Group]] = [
     ("source", source),
     ("artifact", artifact),
     ("note", note),
+    ("anki", anki),
 ]
 
 
